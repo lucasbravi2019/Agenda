@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:sqlserver://host.docker.internal:1433;databaseName=agenda"
+      SPRING_DATASOURCE_USERNAME: "sa"
+      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_JPA_HIBERNATE_DLL_AUTO: "update"

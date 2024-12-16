@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<queries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="queries.xsd">
+    <query name="event.findEventsByYearAndMonth">
+        <![CDATA[
+            select id, event_description, day from event where year = :year and month = :month
+        ]]>
+    </query>
+    <query name="event.findEventsByYearAndMonthAndDay">
+        <![CDATA[
+            select id, event_description from event where year = :year and month = :month and day = :day
+        ]]>
+    </query>
+    <query name="event.insertEvent">
+        <![CDATA[
+            insert into event (id, event_description, day, month, year, created, updated) values
+            (next value for EVENT_SEQ, :description, :day, :month, :year, :created, :updated)
+        ]]>
+    </query>
+    <query name="event.updateEventById">
+        <![CDATA[
+            update event set event_description = :description, updated = :updated where id = :id
+        ]]>
+    </query>
+    <query name="event.deleteEventByIds">
+        <![CDATA[
+            delete from event where id in (:eventIds)
+        ]]>
+    </query>
+</queries>
